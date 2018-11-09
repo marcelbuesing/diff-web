@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Fast Diff</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+    </style>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 2px;
+      height: 100%;
+      font-family: 'Anonymous Pro', monospace;
+      font-size: 14px;
+      line-height: 22px;
+      background-color: #21D4FD;
+      background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+      overflow: hidden;
+    }
+
+    .diff {
+      margin: 0;
+      height: 92%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      background-color: white;
+    }
+
+    .text-area {
+      padding: 8px;
+      height: 88vh;
+      width: 100%;
+      border: none;
+    }
+
+    #show-diff {
+      overflow-y: scroll;
+      overflow-x: auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 2px;
+      display: inline-block;
+      position: relative;
+      margin: 0.5rem;
+    }
+
+    .card-1 {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+
+    .card-2 {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+
+    .card-3 {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+
+    .perf {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      height: 2%;
+      padding: 1.2rem 1.2rem;
+      background-color: #EDEDED;
+    }
+
+    .perf > div {
+      line-height: 2rem;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .perf > div > span {
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    .perf > div > input {
+      padding-top: 2rem;
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .perf {
+        flex-direction: column;
+        height: 12%;
+      }
+
+      .diff {
+        flex-direction: column;
+        height: 88%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <script src="./bootstrap.js"></script>
+  <div class="perf">
+    <img src="rustacean-flat-happy.svg" alt="logo" height="32px">
+    <div><span id="elapsed">⏱ WASM elapsed ~?ms</span></div>
+    <div>
+      <span id="elapsedFastDiff">⏱ -JS- elapsed ~?ms</span>
+      <input id="runJSDiff" type="checkbox">
+    </div>
+  </div>
+  <div class="diff">
+    <textarea id="in-1" class="card card-2 text-area">
+Roses are red, violets are blue,
+I wrote this library here,
+just for you.
+(It's true).
+    </textarea>
+    <textarea id="in-2" class="card card-2 text-area">
+Roses are red, violets are blue,
+I wrote this documentation here,
+just for you.
+(It's quite true).
+    </textarea>
+    <div id="show-diff" class="card card-2 text-area"></div>
+  </div>
+</body>
+
+</html>
