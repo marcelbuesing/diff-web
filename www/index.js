@@ -33,13 +33,13 @@ const benchDiff = (diffF) => {
 
 const wasmDiff = () => {
     const colors =
-    {
-        added: { fg: "#34312C", bg: "#daf4cd" },
-        added_highlighted: { fg: "#34312C", bg: "#bed8b1" },
-        removed: { fg: "#34312C", bg: "#fedfda" },
-        removed_highlighted: { fg: "#34312C", bg: "#fdb7b1" },
-        same: { fg: "#34312C", bg: "white" }
-    };
+        {
+            added: { fg: "#34312C", bg: "#daf4cd" },
+            added_highlighted: { fg: "#34312C", bg: "#bed8b1" },
+            removed: { fg: "#34312C", bg: "#fedfda" },
+            removed_highlighted: { fg: "#34312C", bg: "#fdb7b1" },
+            same: { fg: "#34312C", bg: "white" }
+        };
 
     const diff = benchDiff(() => wasm.diff(in1.value, in2.value, colors));
 
@@ -83,3 +83,10 @@ in1.onkeyup = runDiff;
 in2.onkeyup = runDiff;
 
 runDiff();
+
+fetch('https://raw.githubusercontent.com/docker/docker-install/46dc063425ba40e29da650389f99930bea21abab/install.sh')
+    .then(in1_response => in1_response.text())
+    .then(in1_text => { in1.value = in1_text; });
+fetch('https://raw.githubusercontent.com/docker/docker-install/5273f654845070b6bb5b2529080f48e7599e4b09/install.sh')
+    .then(in2_response => in2_response.text())
+    .then(in2_text => { in2.value = in2_text; });
