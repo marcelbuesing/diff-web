@@ -86,7 +86,13 @@ runDiff();
 
 fetch('https://raw.githubusercontent.com/docker/docker-install/46dc063425ba40e29da650389f99930bea21abab/install.sh')
     .then(in1_response => in1_response.text())
-    .then(in1_text => { in1.value = in1_text; });
+    .then(in1_text => {
+        in1.value = in1_text;
+        runDiff();
+    });
 fetch('https://raw.githubusercontent.com/docker/docker-install/5273f654845070b6bb5b2529080f48e7599e4b09/install.sh')
     .then(in2_response => in2_response.text())
-    .then(in2_text => { in2.value = in2_text; });
+    .then(in2_text => {
+        in2.value = in2_text;
+        runDiff();
+    });
